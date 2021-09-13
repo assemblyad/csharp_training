@@ -6,14 +6,9 @@ namespace WebAdressbookTests
     public class ContactCreation : TestBase
     {
         [Test]
-        public void TheContactCreationTest()
+        public void ContactCreationTest()
         {
-            app.Navigator.GoToHomePage();
-            app.Auth.Login(new AcccountData("admin", "secret"));
-            app.Contacts.InitCreateContact();
-            app.Contacts.FillContactForm(new Contact("F","L"));
-            app.Contacts.SubmitContactCreation();
-            app.Navigator.GoToContactHomePage();
+            app.Contacts.Creation();
         }
     }
 }

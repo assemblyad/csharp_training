@@ -13,7 +13,7 @@
   <Class Name="WebAdressbookTests.GroupCreationTests">
     <Position X="0.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>tests\GroupCreationTests.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -41,7 +41,7 @@
   <Class Name="WebAdressbookTests.GroupHelper" Collapsed="true">
     <Position X="5.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAACAAAAAAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAQAA=</HashCode>
+      <HashCode>BAACAAAAAAAAAAAAAAAAAAAAAAABMEAAAAAAAAAAQAA=</HashCode>
       <FileName>appmanager\GroupHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -52,32 +52,39 @@
       <FileName>appmanager\LoginHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WebAdressbookTests.NavigationHelper" Collapsed="true">
+  <Class Name="WebAdressbookTests.NavigationHelper">
     <Position X="5.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACKA=</HashCode>
       <FileName>appmanager\NavigationHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WebAdressbookTests.HelperBase" Collapsed="true">
-    <Position X="9" Y="0.5" Width="1.5" />
+  <Class Name="WebAdressbookTests.HelperBase">
+    <Position X="9" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>appmanager\HelperBase.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="manager" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="WebAdressbookTests.ApplicationManager">
     <Position X="2.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAAEAEQABAAAAAAAAgAAAASAAAAgAAAAABCAABAAACA=</HashCode>
+      <HashCode>BAAEAEQABAAAAAAAAgAAAASAAAAggAAAABCAABAAACA=</HashCode>
       <FileName>appmanager\ApplicationManager.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="groupHelper" />
       <Field Name="loginHelper" />
       <Field Name="navigator" />
+      <Field Name="groupHelper" />
       <Field Name="contactHelper" />
     </ShowAsAssociation>
   </Class>
+  <Interface Name="OpenQA.Selenium.IWebDriver" Collapsed="true">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

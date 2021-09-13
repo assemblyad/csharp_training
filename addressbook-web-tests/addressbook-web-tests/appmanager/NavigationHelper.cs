@@ -11,7 +11,7 @@ namespace WebAdressbookTests
     {
         private string baseURL;
 
-        public NavigationHelper(IWebDriver driver, string baseURL): base(driver)
+        public NavigationHelper(ApplicationManager manager, string baseURL): base(manager)
         {
             this.baseURL = baseURL;
         }
@@ -19,14 +19,13 @@ namespace WebAdressbookTests
         {
             driver.Navigate().GoToUrl(baseURL + "/addressbook/");
         }
-
-        public void GoToGroupsPage()
-        {
-            driver.FindElement(By.LinkText("groups")).Click();
-        }
         public void GoToContactHomePage()
         {
             driver.FindElement(By.LinkText("home page")).Click();
+        }
+        public void GoToGroupsPage()
+        {
+            driver.FindElement(By.LinkText("groups")).Click();
         }
 
     }
