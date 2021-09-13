@@ -4,23 +4,23 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
 namespace WebAdressbookTests
 {
     [TestFixture]
-    public class ContactCreation : TestBase
+    public class GroupRemovalTests: TestBase
     {
         [Test]
-        public void TheContactCreationTest()
+        public void GroupRemovalTest()
         {
             GoToHomePage();
             Login(new AcccountData("admin", "secret"));
-            InitCreateContact();
-            FillContactForm(new Contact("F","L"));
-            SubmitContactCreation();
-            GoToContactHomePage();
+            GoToGroupsPage();
+            SelectGroupPage(1);
+            RemoveGroupPage();
+            ReturnToGroupsPage();
         }
     }
 }

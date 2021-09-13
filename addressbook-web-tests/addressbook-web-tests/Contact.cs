@@ -1,6 +1,6 @@
 ﻿namespace WebAdressbookTests
 {
-    internal class Contact
+    public class Contact
     {
         private string firstname;
         private string lastname;
