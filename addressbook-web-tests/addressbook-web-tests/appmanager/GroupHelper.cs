@@ -67,5 +67,32 @@ namespace WebAdressbookTests
             ReturnToGroupsPage();
             return this;
         }
+
+        public GroupHelper Modify(GroupData group, int index)
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(index);
+            Edit();
+            FillGroupForm(group);
+            Update();
+            ReturnToGroupsPage();
+            return this;
+        }
+        public GroupHelper Edit()
+        {
+            driver.FindElement(By.XPath("//input[@name='edit']")).Click();
+            return this;
+        }
+        public GroupHelper SelectGroup(int index)
+        {
+            driver.FindElement(By.XPath("//input[@name ='selected[]'][@value='" + index + "']")).Click();
+            return this;
+        }
+
+        public GroupHelper Update()
+        {
+            driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
     }
 }

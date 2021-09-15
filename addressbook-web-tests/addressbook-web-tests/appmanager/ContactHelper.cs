@@ -34,13 +34,45 @@ namespace WebAdressbookTests
             return this;
         }
 
-        internal void Creation()
+        public ContactHelper Creation()
         {
             manager.Navigator.GoToHomePage();
             InitCreateContact();
             FillContactForm(new Contact("F", "L"));
             SubmitContactCreation();
             manager.Navigator.GoToContactHomePage();
+            return this;
+        }
+        public ContactHelper Modify(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            ContactSlection(index);
+            Edit(index);
+            FillContactForm(new Contact("FF", "LL"));
+            driver.FindElement(By.XPath("//div[@id='content']/form/input[22]")).Click();
+            manager.Navigator.GoToContactHomePage();
+            return this;
+        }
+
+        public ContactHelper Removal(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            ContactSlection(index);
+            Edit(index);
+            driver.FindElement(By.XPath("//div[@id='content']/form[2]/input[2]")).Click();
+            manager.Navigator.GoToHomePage();
+            return this;
+        }
+
+        public ContactHelper ContactSlection(int index)
+        {
+            driver.FindElement(By.Id("" + index + "")).Click();
+            return this;
+        }
+        public ContactHelper Edit(int index)
+        {
+             driver.FindElement(By.XPath("//a[@href='edit.php?id=" + index + "']")).Click();
+            return this;
         }
     }
 }
