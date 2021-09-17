@@ -46,8 +46,8 @@ namespace WebAdressbookTests
         public ContactHelper Modify(int index)
         {
             manager.Navigator.GoToHomePage();
-            ContactSlection(index);
-            Edit(index);
+            ContactSlection();
+            Edit();
             FillContactForm(new Contact("FF", "LL"));
             driver.FindElement(By.XPath("//div[@id='content']/form/input[22]")).Click();
             manager.Navigator.GoToContactHomePage();
@@ -57,21 +57,26 @@ namespace WebAdressbookTests
         public ContactHelper Removal(int index)
         {
             manager.Navigator.GoToHomePage();
-            ContactSlection(index);
-            Edit(index);
-            driver.FindElement(By.XPath("//div[@id='content']/form[2]/input[2]")).Click();
+            ContactSlection();
+            Edit();
+            DeteteButton();
             manager.Navigator.GoToHomePage();
             return this;
         }
 
-        public ContactHelper ContactSlection(int index)
+        public ContactHelper ContactSlection()
         {
-            driver.FindElement(By.Id("" + index + "")).Click();
+            driver.FindElement(By.XPath("//tbody/tr[2]/td[1]")).Click();
             return this;
         }
-        public ContactHelper Edit(int index)
+        public ContactHelper Edit()
         {
-             driver.FindElement(By.XPath("//a[@href='edit.php?id=" + index + "']")).Click();
+             driver.FindElement(By.XPath("//tbody/tr[2]/td[8]/a[1]/img[1]")).Click();
+            return this;
+        }
+        public ContactHelper DeteteButton()
+        {
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
             return this;
         }
     }
