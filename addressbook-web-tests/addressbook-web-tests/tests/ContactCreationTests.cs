@@ -3,7 +3,7 @@
 namespace WebAdressbookTests
 {
     [TestFixture]
-    public class ContactCreation : TestBase
+    public class ContactCreation : AuthTestBase
     {
         [Test]
         public void ContactCreationTest()

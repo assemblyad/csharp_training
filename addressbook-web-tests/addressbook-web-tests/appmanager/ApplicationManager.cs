@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
 using System.Text;
+using System.Threading;
 
 namespace WebAdressbookTests
 {
@@ -14,13 +15,11 @@ namespace WebAdressbookTests
         private ContactHelper contactHelper;
         private string baseURL = "http://localhost";
         private IWebDriver driver;
-        private StringBuilder verificationErrors;
+        private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
-        public ApplicationManager()
+        private ApplicationManager()
         {
             driver = new ChromeDriver();
-            verificationErrors = new StringBuilder();
-            //loginHelper.Login(new AcccountData("admin", "secret"));
             loginHelper = new LoginHelper(this);
             navigator = new NavigationHelper(this, baseURL);
             groupHelper = new GroupHelper(this);
@@ -28,6 +27,28 @@ namespace WebAdressbookTests
 
         }
 
+        public static ApplicationManager GetInstance()
+        {
+            if (!app.IsValueCreated)
+            {
+                ApplicationManager newInstance = new ApplicationManager();
+                newInstance.Navigator.GoToHomePage();
+                app.Value = newInstance;
+            }
+            return app.Value;
+        }
+
+        ~ApplicationManager()
+        {
+            try
+            {
+                driver.Quit();
+            }
+            catch (Exception)
+            {
+                // Ignore errors if unable to close the browser
+            }
+        }
         public IWebDriver Driver { get { return driver; } }
 
         public LoginHelper Auth 
@@ -47,24 +68,6 @@ namespace WebAdressbookTests
         public ContactHelper Contacts
         {
             get { return contactHelper; }
-        }
-
-        public void stop() 
-        {
-            LogOut();
-            try
-            {
-                driver.Quit();
-            }
-            catch (Exception)
-            {
-                // Ignore errors if unable to close the browser
-            }
-            Assert.AreEqual("", verificationErrors.ToString());
-        }
-        private void LogOut()
-        {
-            driver.FindElement(By.LinkText("Logout")).Click();
         }
 
 

@@ -3,7 +3,7 @@
   <Class Name="WebAdressbookTests.TestBase">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAIAAAAAAAAAAAAABAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAACAAAAAAAAA=</HashCode>
       <FileName>tests\TestBase.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -34,14 +34,14 @@
   <Class Name="WebAdressbookTests.ContactHelper" Collapsed="true">
     <Position X="5.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AABAIAACAAAEAABAAAAAAAAAAAAAAAQCAAAAAAAAAAI=</HashCode>
+      <HashCode>AABAIAACAAAEAABAAAAAAAAAAAEAAAQCAAAAAAAAAAI=</HashCode>
       <FileName>appmanager\ContactHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebAdressbookTests.GroupHelper" Collapsed="true">
     <Position X="5.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAACIAAAAABAAAAAAAAABAAAAAABMEACAAAAAAAAQAA=</HashCode>
+      <HashCode>BAQCIAAAAABAAAAAAAAABAAAAAABMEACAAAAAAAAQAA=</HashCode>
       <FileName>appmanager\GroupHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -62,7 +62,7 @@
   <Class Name="WebAdressbookTests.HelperBase">
     <Position X="9" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>appmanager\HelperBase.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -72,7 +72,7 @@
   <Class Name="WebAdressbookTests.ApplicationManager">
     <Position X="2.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAAEAEQABAAAAAAAAgAAAASAAAAggAAAABCAABAAACA=</HashCode>
+      <HashCode>BAAEAEAABAAAAAAAAgAAAASABAAAgAAAADCAABAAACA=</HashCode>
       <FileName>appmanager\ApplicationManager.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
