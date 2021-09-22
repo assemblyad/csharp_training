@@ -43,7 +43,7 @@ namespace WebAdressbookTests
             manager.Navigator.GoToContactHomePage();
             return this;
         }
-        public ContactHelper Modify(int index)
+        public ContactHelper Modify()
         {
             manager.Navigator.GoToHomePage();
             ContactSlection();
@@ -54,7 +54,7 @@ namespace WebAdressbookTests
             return this;
         }
 
-        public ContactHelper Removal(int index)
+        public ContactHelper Removal()
         {
             manager.Navigator.GoToHomePage();
             ContactSlection();
