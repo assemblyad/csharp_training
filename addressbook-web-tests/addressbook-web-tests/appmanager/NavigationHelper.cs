@@ -25,7 +25,11 @@ namespace WebAdressbookTests
         }
         public void GoToContactHomePage()
         {
-            driver.FindElement(By.LinkText("home page")).Click();
+            if(driver.Url == baseURL + "/addressbook/" && IsElementPresent(By.Name("add")))
+            {
+                return;
+            }
+                driver.FindElement(By.LinkText("home page")).Click();
         }
         public void GoToGroupsPage()
         {
