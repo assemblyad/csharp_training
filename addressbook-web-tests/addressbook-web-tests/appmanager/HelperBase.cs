@@ -34,5 +34,10 @@ namespace WebAdressbookTests
             }
         }
 
+        public void closePopUpwindow()
+        {
+            driver.SwitchTo().Alert().Accept();
+        }
+
     }
 }

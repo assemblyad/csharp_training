@@ -58,8 +58,8 @@ namespace WebAdressbookTests
         {
             manager.Navigator.GoToHomePage();
             ContactSlection();
-            Edit();
             DeteteButton();
+            closePopUpwindow();
             manager.Navigator.GoToHomePage();
             return this;
         }
