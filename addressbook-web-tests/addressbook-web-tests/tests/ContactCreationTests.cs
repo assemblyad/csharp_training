@@ -8,6 +8,7 @@ namespace WebAdressbookTests
         [Test]
         public void ContactCreationTest()
         {
+            // preparation
             app.Contacts.Creation();
         }
     }
