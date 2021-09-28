@@ -82,7 +82,6 @@ namespace WebAdressbookTests
         }
         public GroupHelper SelectGroup(int index)
         {
-            //driver.FindElement(By.XPath("//span[@class='group']//input")).Click();
             driver.FindElement(By.XPath("//input[@name ='selected[]'][" + (index+1) + "]")).Click();
             return this;
         }
