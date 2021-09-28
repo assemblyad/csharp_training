@@ -43,10 +43,10 @@ namespace WebAdressbookTests
             manager.Navigator.GoToContactHomePage();
             return this;
         }
-        public ContactHelper Modify()
+        public ContactHelper Modify(int index)
         {
             manager.Navigator.GoToHomePage();
-            ContactSlection();
+            ContactSlection(index);
             Edit();
             FillContactForm(new Contact("FF", "LL"));
             driver.FindElement(By.XPath("//div[@id='content']/form/input[22]")).Click();
@@ -54,19 +54,20 @@ namespace WebAdressbookTests
             return this;
         }
 
-        public ContactHelper Removal()
+        public ContactHelper Removal(int index)
         {
             manager.Navigator.GoToHomePage();
-            ContactSlection();
+            ContactSlection(index);
             DeteteButton();
             closePopUpwindow();
             manager.Navigator.GoToHomePage();
             return this;
         }
 
-        public ContactHelper ContactSlection()
+        public ContactHelper ContactSlection(int index)
         {
-            driver.FindElement(By.XPath("//tbody/tr[2]/td[1]")).Click();
+            //driver.FindElement(By.XPath("//tbody/tr[2]/td[1]")).Click();
+            driver.FindElement(By.XPath("//input[@name='selected[]'][" + (index + 1) + "]")).Click();
             return this;
         }
         public ContactHelper Edit()

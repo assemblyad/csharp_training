@@ -17,7 +17,7 @@ namespace WebAdressbookTests
         public GroupHelper Remove(int index)
         {
             manager.Navigator.GoToGroupsPage();
-            SelectGroupPage(index);
+            SelectGroup(index);
             RemoveGroupPage();
             ReturnToGroupsPage();
             return this;
@@ -51,7 +51,7 @@ namespace WebAdressbookTests
         }
         public GroupHelper SelectGroupPage(int index)
         {
-            driver.FindElement(By.XPath("//div[@id='content']/form/span[" + index + "]/input")).Click();
+            driver.FindElement(By.XPath("//input[@name='selected[]']["+(index+1)+"]")).Click();
             return this;
         }
 
@@ -65,10 +65,10 @@ namespace WebAdressbookTests
             return this;
         }
 
-        public GroupHelper Modify(GroupData group)
+        public GroupHelper Modify(int index, GroupData group)
         {
             manager.Navigator.GoToGroupsPage();
-            SelectGroup();
+            SelectGroup(index);
             Edit();
             FillGroupForm(group);
             Update();
@@ -80,9 +80,10 @@ namespace WebAdressbookTests
             driver.FindElement(By.XPath("//input[@name='edit']")).Click();
             return this;
         }
-        public GroupHelper SelectGroup()
+        public GroupHelper SelectGroup(int index)
         {
-            driver.FindElement(By.XPath("//span[@class='group']//input")).Click();
+            //driver.FindElement(By.XPath("//span[@class='group']//input")).Click();
+            driver.FindElement(By.XPath("//input[@name ='selected[]'][" + (index+1) + "]")).Click();
             return this;
         }
 

@@ -11,7 +11,7 @@ namespace WebAdressbookTests
             GroupData group = new GroupData("name");
             group.Header = "Newheader";
             group.Footer = "Newfooter";
-            app.Groups.Modify(group);
+            app.Groups.Modify(0,group);
         }
     }
 }

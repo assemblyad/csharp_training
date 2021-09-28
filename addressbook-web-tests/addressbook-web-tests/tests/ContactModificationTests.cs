@@ -8,7 +8,7 @@ namespace WebAdressbookTests
         [Test]
         public void ContactModificationTest()
         {
-            app.Contacts.Modify();
+            app.Contacts.Modify(0);
         }
     }
 }
