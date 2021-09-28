@@ -3,7 +3,7 @@
 namespace WebAdressbookTests
 {
     [TestFixture]
-    public class GroupRemovalTests: AuthTestBase
+    public class GroupRemovalTests: GroupExistenceValidationBaseTest
     {
         [Test]
         public void GroupRemovalTest()

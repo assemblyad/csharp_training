@@ -46,10 +46,6 @@ namespace WebAdressbookTests
         public ContactHelper Modify()
         {
             manager.Navigator.GoToHomePage();
-            if (IsContactTableEmpty())
-            {
-                Creation();
-            }
             ContactSlection();
             Edit();
             FillContactForm(new Contact("FF", "LL"));
@@ -61,12 +57,6 @@ namespace WebAdressbookTests
         public ContactHelper Removal()
         {
             manager.Navigator.GoToHomePage();
-
-            if (IsContactTableEmpty()) 
-            { 
-                Creation(); 
-            }
-            
             ContactSlection();
             DeteteButton();
             closePopUpwindow();
@@ -91,6 +81,7 @@ namespace WebAdressbookTests
         }
         public bool IsContactTableEmpty()
         {
+            manager.Navigator.GoToHomePage();
             return (driver.FindElements(By.XPath("//table[@id='maintable']//tr")).Count <= 1);
         }
     }

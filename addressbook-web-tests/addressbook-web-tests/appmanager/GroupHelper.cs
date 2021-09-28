@@ -17,14 +17,6 @@ namespace WebAdressbookTests
         public GroupHelper Remove()
         {
             manager.Navigator.GoToGroupsPage();
-            
-            if (IsGroupTableEmpty())
-            {
-                GroupData group = new GroupData("name");
-                group.Header = "header";
-                group.Footer = "footer";
-                Create(group);
-            }
             SelectGroupPage(1);
             RemoveGroupPage();
             ReturnToGroupsPage();
@@ -73,17 +65,10 @@ namespace WebAdressbookTests
             return this;
         }
 
-        public GroupHelper Modify(GroupData group, int index)
+        public GroupHelper Modify(GroupData group)
         {
             manager.Navigator.GoToGroupsPage();
-            if (IsGroupTableEmpty())
-            {
-                GroupData groupNew = new GroupData("name");
-                groupNew.Header = "header";
-                groupNew.Footer = "footer";
-                Create(group);
-            }
-            SelectGroup(index);
+            SelectGroup();
             Edit();
             FillGroupForm(group);
             Update();
@@ -95,9 +80,9 @@ namespace WebAdressbookTests
             driver.FindElement(By.XPath("//input[@name='edit']")).Click();
             return this;
         }
-        public GroupHelper SelectGroup(int index)
+        public GroupHelper SelectGroup()
         {
-            driver.FindElement(By.XPath("//input[@name ='selected[]'][@value='" + index + "']")).Click();
+            driver.FindElement(By.XPath("//span[@class='group']//input")).Click();
             return this;
         }
 
@@ -108,6 +93,7 @@ namespace WebAdressbookTests
         }
         public bool IsGroupTableEmpty()
         {
+            manager.Navigator.GoToGroupsPage();
             return driver.FindElements(By.XPath("//div[@id='content']//span[@class='group']")).Count <1;
         }
     }

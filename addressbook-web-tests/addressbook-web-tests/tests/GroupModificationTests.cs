@@ -3,7 +3,7 @@
 namespace WebAdressbookTests
 {
     [TestFixture]
-    public class GroupModificationTests : AuthTestBase
+    public class GroupModificationTests : GroupExistenceValidationBaseTest
     {
         [Test]
         public void GroupModification()
@@ -11,7 +11,7 @@ namespace WebAdressbookTests
             GroupData group = new GroupData("name");
             group.Header = "Newheader";
             group.Footer = "Newfooter";
-            app.Groups.Modify(group,49);
+            app.Groups.Modify(group);
         }
     }
 }
