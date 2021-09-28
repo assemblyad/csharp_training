@@ -14,10 +14,10 @@ namespace WebAdressbookTests
         {
         }
 
-        public GroupHelper Remove()
+        public GroupHelper Remove(int index)
         {
             manager.Navigator.GoToGroupsPage();
-            SelectGroupPage(1);
+            SelectGroupPage(index);
             RemoveGroupPage();
             ReturnToGroupsPage();
             return this;
