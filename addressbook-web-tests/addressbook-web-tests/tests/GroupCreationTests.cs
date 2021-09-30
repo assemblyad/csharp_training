@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace WebAdressbookTests
 {
@@ -8,19 +9,64 @@ namespace WebAdressbookTests
         [Test]
         public void GroupCreationTest()
         {
-            GroupData group = new GroupData("name");
-            group.Header="header";
-            group.Footer = "footer";
+            GroupData group = new GroupData("MnameN");
+            group.Header="MheaderN";
+            group.Footer = "MfooterN";
+
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+
             app.Groups.Create(group);
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            
+            oldGroups.Add(group);
+           
+            oldGroups.Sort();
+            newGroups.Sort();
+
+            Assert.AreEqual(oldGroups, newGroups);
+
         }
+        
         [Test]
         public void EmptyGroupCreationTest()
         {
             GroupData group = new GroupData("");
             group.Header = "";
             group.Footer = "";
-            app.Groups.Create(group);
-         }
 
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+
+            app.Groups.Create(group);
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+
+            oldGroups.Add(group);
+
+            oldGroups.Sort();
+            newGroups.Sort();
+
+            Assert.AreEqual(oldGroups, newGroups);
+        }
+
+        
+        [Test]
+        public void BadNameGroupCreationTest()
+        {
+            GroupData group = new GroupData("a'a");
+            group.Header = "";
+            group.Footer = "";
+
+
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+
+            app.Groups.Create(group);
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+
+            oldGroups.Add(group);
+
+            oldGroups.Sort();
+            newGroups.Sort();
+
+            Assert.AreEqual(oldGroups, newGroups);
+        }
     }
 }

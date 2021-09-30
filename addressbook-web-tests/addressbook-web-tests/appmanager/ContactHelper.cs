@@ -12,6 +12,20 @@ namespace WebAdressbookTests
         public ContactHelper(ApplicationManager manager): base(manager)
         {
         }
+
+        public List<ContactData> GetContactList()
+        {
+            
+            List<ContactData> contacts = new List<ContactData>();
+            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//tr[@name='entry']"));
+            foreach(IWebElement element in elements)
+            {
+                contacts.Add(new ContactData(element.Text.Split(' ')[1],
+                                             element.Text.Split(' ')[0]));
+            }
+            return contacts;
+        }
+
         public ContactHelper SubmitContactCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
@@ -19,7 +33,7 @@ namespace WebAdressbookTests
 
         }
 
-        public ContactHelper FillContactForm(Contact contact)
+        public ContactHelper FillContactForm(ContactData contact)
         {
             driver.FindElement(By.Name("firstname")).Clear();
             driver.FindElement(By.Name("firstname")).SendKeys(contact.Firstname);
@@ -38,7 +52,7 @@ namespace WebAdressbookTests
         {
             manager.Navigator.GoToHomePage();
             InitCreateContact();
-            FillContactForm(new Contact("F", "L"));
+            FillContactForm(new ContactData("FM", "LM"));
             SubmitContactCreation();
             manager.Navigator.GoToContactHomePage();
             return this;
@@ -48,7 +62,7 @@ namespace WebAdressbookTests
             manager.Navigator.GoToHomePage();
             ContactSlection(index);
             Edit();
-            FillContactForm(new Contact("FF", "LL"));
+            FillContactForm(new ContactData("FD", "LD"));
             driver.FindElement(By.XPath("//div[@id='content']/form/input[22]")).Click();
             manager.Navigator.GoToContactHomePage();
             return this;
