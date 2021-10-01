@@ -14,25 +14,36 @@ namespace WebAdressbookTests
         {
         }
 
+        private List<GroupData> groupCache = null;
+
         public GroupHelper Remove(int index)
         {
             manager.Navigator.GoToGroupsPage();
             SelectGroup(index);
-            RemoveGroupPage();
+            RemoveGroup();
             ReturnToGroupsPage();
             return this;
         }
 
         public List<GroupData> GetGroupList()
         {
-            List<GroupData> groups = new List<GroupData>();
-            manager.Navigator.GoToGroupsPage();
-            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
-            foreach(IWebElement element in elements)
+            if (groupCache == null)
             {
-                groups.Add(new GroupData(element.Text));
+                groupCache = new List<GroupData>();
+                manager.Navigator.GoToGroupsPage();
+                ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
+                foreach(IWebElement element in elements)
+                {
+                    groupCache.Add(new GroupData(element.Text) {
+                        ID=element.FindElement(By.TagName("input")).GetAttribute("value")});
+                }
             }
-            return groups;
+            return new List<GroupData>(groupCache);
+        }
+
+        internal int GetGroupCount()
+        {
+            return driver.FindElements(By.CssSelector("span.group")).Count;
         }
 
         public GroupHelper InitGroupCreation()
@@ -55,11 +66,13 @@ namespace WebAdressbookTests
         public GroupHelper SubmitGroupCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
+            groupCache = null;
             return this;
         }
-        public GroupHelper RemoveGroupPage()
+        public GroupHelper RemoveGroup()
         {
             driver.FindElement(By.Name("delete")).Click();
+            groupCache = null;
             return this;
         }
         public GroupHelper SelectGroupPage(int index)
@@ -84,7 +97,7 @@ namespace WebAdressbookTests
             SelectGroup(index);
             Edit();
             FillGroupForm(group);
-            Update();
+            SubmitGroupModification();
             ReturnToGroupsPage();
             return this;
         }
@@ -99,9 +112,10 @@ namespace WebAdressbookTests
             return this;
         }
 
-        public GroupHelper Update()
+        public GroupHelper SubmitGroupModification()
         {
             driver.FindElement(By.Name("update")).Click();
+            groupCache = null;
             return this;
         }
         public bool IsGroupTableEmpty()

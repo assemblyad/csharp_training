@@ -13,22 +13,34 @@ namespace WebAdressbookTests
         {
         }
 
+        private List<ContactData> contactCache = null; 
+
         public List<ContactData> GetContactList()
         {
-            
-            List<ContactData> contacts = new List<ContactData>();
-            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//tr[@name='entry']"));
-            foreach(IWebElement element in elements)
+            if (contactCache == null)
             {
-                contacts.Add(new ContactData(element.Text.Split(' ')[1],
-                                             element.Text.Split(' ')[0]));
+                contactCache = new List<ContactData>();
+                ICollection<IWebElement> elements = driver.FindElements(By.XPath("//tr[@name='entry']"));
+                foreach (IWebElement element in elements)
+                {
+                    contactCache.Add(new ContactData(element.Text.Split(' ')[1],
+                                                 element.Text.Split(' ')[0])
+                    {ID= element.FindElement(By.XPath("//tr[@name='entry']//input")).GetAttribute("value")});
+                }
+
             }
-            return contacts;
+            return new List<ContactData>(contactCache);
+        }
+
+        internal int GetContactCount()
+        {
+            return driver.FindElements(By.XPath("//tr[@name='entry']")).Count;
         }
 
         public ContactHelper SubmitContactCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
+            contactCache = null;
             return this;
 
         }
@@ -61,8 +73,8 @@ namespace WebAdressbookTests
         {
             manager.Navigator.GoToHomePage();
             ContactSlection(index);
-            Edit();
-            FillContactForm(new ContactData("FD", "LD"));
+            Modify();
+            FillContactForm(new ContactData("FO", "LO"));
             driver.FindElement(By.XPath("//div[@id='content']/form/input[22]")).Click();
             manager.Navigator.GoToContactHomePage();
             return this;
@@ -84,14 +96,16 @@ namespace WebAdressbookTests
             driver.FindElement(By.XPath("//input[@name='selected[]'][" + (index + 1) + "]")).Click();
             return this;
         }
-        public ContactHelper Edit()
+        public ContactHelper Modify()
         {
-             driver.FindElement(By.XPath("//tbody/tr[2]/td[8]/a[1]/img[1]")).Click();
+            driver.FindElement(By.XPath("//tbody/tr[2]/td[8]/a[1]/img[1]")).Click();
+            contactCache = null;
             return this;
         }
         public ContactHelper DeteteButton()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            contactCache = null;
             return this;
         }
         public bool IsContactTableEmpty()
