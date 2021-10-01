@@ -30,7 +30,7 @@ namespace WebAdressbookTests
                 return 1;
             }
 
-            return Firstname.CompareTo(other.Firstname) * Lastname.CompareTo(other.Lastname);
+            return Lastname.CompareTo(other.Lastname);
 
         }
 
