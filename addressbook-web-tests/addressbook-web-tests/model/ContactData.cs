@@ -21,7 +21,18 @@ namespace WebAdressbookTests
             {
                 return 1;
             }
-            return Lastname.CompareTo(other.Lastname);
+
+            int compResuld = this.Lastname.CompareTo(other.Lastname);
+
+            if (compResuld!=0)
+            {
+                return compResuld;
+            }
+            else
+            {
+                return Lastname.CompareTo(other.Lastname);
+            }
+            
         }
 
         public bool Equals(ContactData other)
