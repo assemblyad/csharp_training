@@ -20,11 +20,11 @@ namespace WebAdressbookTests
             if (contactCache == null)
             {
                 contactCache = new List<ContactData>();
-                ICollection<IWebElement> elements = driver.FindElements(By.XPath("//tr[@name='entry']"));
+                ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
                 foreach (IWebElement element in elements)
                 {
-                    contactCache.Add(new ContactData(element.Text.Split(' ')[1],
-                                                 element.Text.Split(' ')[0])
+                    contactCache.Add(new ContactData(element.FindElements(By.TagName("td"))[2].Text,
+                                                 element.FindElements(By.TagName("td"))[1].Text)
                     {ID= element.FindElement(By.XPath("//tr[@name='entry']//input")).GetAttribute("value")});
                 }
 

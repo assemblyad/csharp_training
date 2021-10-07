@@ -37,7 +37,7 @@ namespace WebAdressbookTests
             }
             return app.Value;
         }
-
+        
         ~ApplicationManager()
         {
             try
@@ -49,6 +49,7 @@ namespace WebAdressbookTests
                 // Ignore errors if unable to close the browser
             }
         }
+        
         public IWebDriver Driver { get { return driver; } }
 
         public LoginHelper Auth 
