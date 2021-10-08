@@ -13,7 +13,47 @@ namespace WebAdressbookTests
         {
         }
 
-        private List<ContactData> contactCache = null; 
+        private List<ContactData> contactCache = null;
+
+        internal ContactData GetContactInformationFormTable(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            IList<IWebElement> cells = driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"));
+
+            string lastName = cells[1].Text;
+            string firstName = cells[2].Text;
+            string address = cells[3].Text;
+            string allPhones = cells[5].Text;
+
+            return new ContactData(firstName, lastName)
+            {
+                Address = address,
+                AllPhones = allPhones
+            };
+        }
+
+        internal ContactData GetContactInformationFormEditForm(int index)
+        {
+
+            manager.Navigator.GoToHomePage();
+            InitContactModification(index);
+            string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
+            string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
+            string address = driver.FindElement(By.Name("address")).GetAttribute("value");
+            string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
+            string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
+            string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
+
+            return new ContactData(firstName, lastName)
+            {
+               Address = address,
+               HomePhone = homePhone,
+               MobilePhone = mobilePhone,
+               WorkPhone = workPhone
+            };
+            
+        }
 
         public List<ContactData> GetContactList()
         {
@@ -73,7 +113,7 @@ namespace WebAdressbookTests
         {
             manager.Navigator.GoToHomePage();
             ContactSlection(index);
-            Modify();
+            InitContactModification(index);
             FillContactForm(new ContactData("FO", "LO"));
             driver.FindElement(By.XPath("//div[@id='content']/form/input[22]")).Click();
             manager.Navigator.GoToContactHomePage();
@@ -96,9 +136,11 @@ namespace WebAdressbookTests
             driver.FindElement(By.XPath("//input[@name='selected[]'][" + (index + 1) + "]")).Click();
             return this;
         }
-        public ContactHelper Modify()
+        public ContactHelper InitContactModification(int index)
         {
-            driver.FindElement(By.XPath("//tbody/tr[2]/td[8]/a[1]/img[1]")).Click();
+            driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"))[7]
+                .FindElement(By.TagName("a")).Click();
             contactCache = null;
             return this;
         }
