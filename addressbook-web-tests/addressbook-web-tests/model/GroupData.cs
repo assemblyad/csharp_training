@@ -36,7 +36,7 @@ namespace WebAdressbookTests
             {
                 return true;
             }
-            return Name == other.Name;
+            return Name.Equals(other.Name);
         }
 
         override public int GetHashCode()
