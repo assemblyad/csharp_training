@@ -60,13 +60,22 @@ namespace WebAdressbookTests
             if (contactCache == null)
             {
                 contactCache = new List<ContactData>();
-                ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
+                ICollection<IWebElement> elements = driver.FindElements(By.XPath("//tr[@name='entry']"));
+                foreach (IWebElement element in elements)
+                {
+                    contactCache.Add(new ContactData(element.FindElements(By.XPath(".//td"))[2].Text,
+                                                        element.FindElements(By.XPath(".//td"))[1].Text)
+                    { ID = element.FindElement(By.XPath("//tr[@name='entry']//input")).GetAttribute("value") });
+
+                }
+                /*ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
                 foreach (IWebElement element in elements)
                 {
                     contactCache.Add(new ContactData(element.FindElements(By.TagName("td"))[2].Text,
                                                  element.FindElements(By.TagName("td"))[1].Text)
                     {ID= element.FindElement(By.XPath("//tr[@name='entry']//input")).GetAttribute("value")});
                 }
+                */
 
             }
             return new List<ContactData>(contactCache);
