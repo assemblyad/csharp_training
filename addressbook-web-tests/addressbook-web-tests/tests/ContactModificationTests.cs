@@ -9,7 +9,7 @@ namespace WebAdressbookTests
         [Test]
         public void ContactModificationTest()
         {
-            ContactData newData = new ContactData("FO", "LO");
+            ContactData newData = new ContactData("TT", "MM");
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();
             ContactData oldData = oldContacts[0];

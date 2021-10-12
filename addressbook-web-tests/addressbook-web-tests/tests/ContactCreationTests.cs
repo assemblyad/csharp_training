@@ -15,7 +15,7 @@ namespace WebAdressbookTests
             Assert.AreEqual(oldContacts.Count + 1, app.Contacts.GetContactCount());
             List<ContactData> newContacts = app.Contacts.GetContactList();
 
-            oldContacts.Add(new ContactData("FM", "LM"));
+            oldContacts.Add(new ContactData("TT", "MM"));
             oldContacts.Sort();
             newContacts.Sort();
 

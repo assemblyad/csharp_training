@@ -11,10 +11,10 @@ namespace WebAdressbookTests
     public class ContactInformationTests: AuthTestBase
     {
         [Test]
-        public void TestContactInformation()
+        public void ContactInformationTest()
         {
-            ContactData fromTable = app.Contacts.GetContactInformationFormTable(0);
-            ContactData fromForm= app.Contacts.GetContactInformationFormEditForm(0);
+            ContactData fromTable = app.Contacts.GetContactInformationFromTable(0);
+            ContactData fromForm= app.Contacts.GetContactInformationFromEditForm(0);
 
             //verification
             Assert.AreEqual(fromTable, fromForm);
