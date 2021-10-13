@@ -21,12 +21,10 @@ namespace WebAdressbookTests
             StringBuilder builder = new StringBuilder();
             for(int i =0; i<l; i++)
             {
-                builder.Append(Convert.ToChar(97+ Convert.ToInt32(rnd.NextDouble() * 23)));
+                builder.Append(Convert.ToChar(65+ Convert.ToInt32(rnd.NextDouble() * 25)));
             }
             
             return builder.ToString();
         }
-
-
     }
 }
