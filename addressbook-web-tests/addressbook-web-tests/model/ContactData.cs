@@ -138,11 +138,12 @@ namespace WebAdressbookTests
                         .Replace("Anniversary", "")
                         .Replace("Homepage:","")
                         .Replace("H:", "")
+                        .Replace("M:","")
                         .Replace("W:", "")
                         .Replace("F:", "")
                         .Replace(".", "")
                         .Replace("P:", " ")
-                        .Replace(":", "")
+                        .Replace(": ", "")
                         .Replace(" ","")                        
                         .Replace("\r\n", "")
                 + "\r\n";

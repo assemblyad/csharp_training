@@ -201,7 +201,7 @@ namespace WebAdressbookTests
             manager.Navigator.GoToHomePage();
             ContactSelection(index);
             InitContactModification(index);
-            FillContactForm(new ContactData("TT", "MM"));
+            FillContactForm(new ContactData("BB", "CC"));
             driver.FindElement(By.XPath("//div[@id='content']/form/input[22]")).Click();
             manager.Navigator.GoToContactHomePage();
             return this;

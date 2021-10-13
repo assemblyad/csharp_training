@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace WebAdressbookTests
 {
     [TestFixture]
-    class ContactPropertiesTest: AuthTestBase
+    class ContactDetailsTest: AuthTestBase
     {
         [Test]
         public void ContactDetailsDataValidationTest()
