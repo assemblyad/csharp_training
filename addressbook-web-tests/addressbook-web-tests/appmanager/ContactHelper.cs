@@ -187,11 +187,11 @@ namespace WebAdressbookTests
             return this;
         }
 
-        public ContactHelper Creation()
+        public ContactHelper Creation(ContactData contact)
         {
             manager.Navigator.GoToHomePage();
             InitCreateContact();
-            FillContactForm(new ContactData("TT", "MM"));
+            FillContactForm(contact);
             SubmitContactCreation();
             manager.Navigator.GoToContactHomePage();
             return this;
@@ -212,7 +212,7 @@ namespace WebAdressbookTests
             manager.Navigator.GoToHomePage();
             ContactSelection(index);
             DeteteButton();
-            closePopUpwindow();
+            ClosePopUpwindow();
             manager.Navigator.GoToHomePage();
             return this;
         }

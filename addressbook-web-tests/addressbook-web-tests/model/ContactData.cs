@@ -234,11 +234,11 @@ namespace WebAdressbookTests
                 return 1;
             }
 
-            int compResuld = this.LastName.CompareTo(other.LastName);
+            int compResult = this.LastName.CompareTo(other.LastName);
 
-            if (compResuld!=0)
+            if (compResult!=0)
             {
-                return compResuld;
+                return compResult;
             }
             else
             {

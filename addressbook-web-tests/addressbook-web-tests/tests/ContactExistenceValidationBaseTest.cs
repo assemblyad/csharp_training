@@ -14,7 +14,7 @@ namespace WebAdressbookTests
         {
             if (app.Contacts.IsContactTableEmpty())
             {
-                app.Contacts.Creation();
+                app.Contacts.Creation(new ContactData("FF","LL"));
             }
 
         }

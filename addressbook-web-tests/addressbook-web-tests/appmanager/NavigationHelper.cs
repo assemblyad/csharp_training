@@ -9,7 +9,7 @@ namespace WebAdressbookTests
 {
     public class NavigationHelper: HelperBase
     {
-        private string baseURL;
+        private readonly string baseURL;
 
         public NavigationHelper(ApplicationManager manager, string baseURL): base(manager)
         {

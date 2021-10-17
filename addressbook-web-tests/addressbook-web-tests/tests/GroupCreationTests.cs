@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
 using System.IO;
 using System.Collections.Generic;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace WebAdressbookTests
 {
@@ -36,7 +38,15 @@ namespace WebAdressbookTests
             return groups;
         }
 
-        [Test,TestCaseSource("GroupDataFromFile")]
+        public static IEnumerable<GroupData> GroupDataFromXml()
+        {
+            return (List<GroupData>)
+                new XmlSerializer(typeof(List<GroupData>))
+                    .Deserialize(new StreamReader(@"groups.xml"));
+        }
+
+
+        [Test,TestCaseSource("GroupDataFromXml")]
         public void GroupCreationTest(GroupData group)
         {
             /*

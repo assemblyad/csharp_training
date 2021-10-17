@@ -34,7 +34,7 @@ namespace WebAdressbookTests
             }
         }
 
-        public void closePopUpwindow()
+        public void ClosePopUpwindow()
         {
             driver.SwitchTo().Alert().Accept();
         }
