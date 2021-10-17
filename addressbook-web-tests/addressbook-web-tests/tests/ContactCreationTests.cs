@@ -38,9 +38,7 @@ namespace WebAdressbookTests
             return (List<ContactData>)
                 new XmlSerializer(typeof(List<ContactData>))
                     .Deserialize(new StreamReader(@"contacts.xml"));
-
         }
-
 
         [Test, TestCaseSource("ContactDataFromXml")]
         public void ContactCreationTest(ContactData contact)
