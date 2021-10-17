@@ -175,9 +175,9 @@ namespace WebAdressbookTests
         public ContactHelper FillContactForm(ContactData contact)
         {
             driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(contact.Firstname);
+            driver.FindElement(By.Name("firstname")).SendKeys(contact.FirstName);
             driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(contact.Lastname);
+            driver.FindElement(By.Name("lastname")).SendKeys(contact.LastName);
             return this;
         }
 

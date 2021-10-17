@@ -10,13 +10,13 @@ namespace WebAdressbookTests
 
         public ContactData(string firstname, string lastname)
         {
-            Firstname = firstname;
-            Lastname = lastname;
+            FirstName = firstname;
+            LastName = lastname;
         }
 
         public string ID { get; set; }
-        public string Firstname { get; set; }
-        public string Lastname { get; set;}
+        public string FirstName { get; set; }
+        public string LastName { get; set;}
         public string MiddleName { get; set; }
         public string NickName { get; set; }
         public string Company { get; set; }
@@ -39,45 +39,25 @@ namespace WebAdressbookTests
         public string ADay { get; set; }
         public string AMonth { get; set; }
         public string AYear { get; set; }
+        public string BAge { get; set; }
+        public string AAge { get; set; }
 
         public string AllContactDetails
         {
             get {
                 if (allContactDetails != null)
                 { 
-                    return Cleanup(allContactDetails);
+                    return allContactDetails;
                 }
                 else
                 {
-                    string value = Cleanup(Firstname +
-                           MiddleName +
-                           Lastname +
-                           NickName +
-                           Title +
-                           Company +
-                           Address +
-                           HomePhone +
-                           MobilePhone +
-                           WorkPhone +
-                           Fax +
-                           Email1 +
-                           Email2 +
-                           Email3 +
-                           HomePage +
-                           BDay +
-                           BMonth +
-                           BYear+
-                           BAge +
-                           ADay +
-                           AMonth +
-                           AYear +
-                           AAge +
-                           SecondAddress +
-                           SecondHomePhone +
-                           Notes);
-
-                    return value;
-//                           "\r\n"; 
+                    return (EndLineSymbols(EndLineSymbols(ContactDetailsList(
+                        FirstName, MiddleName, LastName, NickName, Title, Company, Address)))
+                        + EndLineSymbols(EndLineSymbols(GetTelephoneList(HomePhone, MobilePhone, WorkPhone, Fax)))
+                        + EndLineSymbols(EndLineSymbols(GetEmailList(Email1, Email2, Email3, HomePage)))
+                        + StartLineSymbols(SecondAddress)
+                        + EndLineSymbols(StartLineSymbols(StartLineSymbols(StringPhone2(SecondHomePhone))))
+                        + StartLineSymbols(Notes)).Trim();
                 }
                 
             }
@@ -93,7 +73,7 @@ namespace WebAdressbookTests
                 }
                 else
                 {
-                    return (Cleanup(HomePhone) + Cleanup(MobilePhone) + Cleanup(WorkPhone))+Cleanup(SecondHomePhone).Trim();
+                    return (CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone))+CleanUp(SecondHomePhone).Trim();
                 }
             }
             set {
@@ -112,42 +92,140 @@ namespace WebAdressbookTests
                 }
                 else
                 {
-                    return (Cleanup(Email1) + Cleanup(Email2) + Cleanup(Email3)).Trim();
+                    return (EndLineSymbols(Email1) + EndLineSymbols(Email2) + EndLineSymbols(Email3)).Trim();
                 }
-
             }
 
             set { allEmails = value; }
         }
-
-        public string BAge { get;  set; }
-        public string AAge { get;  set; }
-
-        private string Cleanup(string anyStrting)
+        //Glue the lines together to match tge contact details   fullname as on the details form
+        public string GetFullName(string firstname, string middlename, string lastname)
         {
-            if(anyStrting == null || anyStrting == "" )
+            string form = "";
+
+            if (firstname != null && firstname != "")
+            {
+                form = FirstName + " ";
+            }
+            if (middlename != null && middlename != "")
+            {
+                form = form + MiddleName + " ";
+            }
+            if (lastname != null && lastname != "")
+            {
+                form = form + LastName + " ";
+            }
+            return form.Trim();
+        }
+        public string EndLineSymbols(string line)
+        {
+            if (line == null || line == "")
             {
                 return "";
             }
-
-            return anyStrting.Replace(" ", "")
-                        .Replace("-", "")
-                        .Replace("(", "")
-                        .Replace(")", "")
-                        .Replace("Birthday", "")
-                        .Replace("Anniversary", "")
-                        .Replace("Homepage:","")
-                        .Replace("H:", "")
-                        .Replace("M:","")
-                        .Replace("W:", "")
-                        .Replace("F:", "")
-                        .Replace(".", "")
-                        .Replace("P:", " ")
-                        .Replace(": ", "")
-                        .Replace(" ","")                        
-                        .Replace("\r\n", "")
-                + "\r\n";
+            return line + "\r\n";
         }
+        public string StartLineSymbols(string line)
+        {
+            if (line == null || line == "")
+            {
+                return "";
+            }
+            return "\r\n" + line;
+        }
+
+        // Glue the lines together same as on contact details form
+        public string ContactDetailsList(
+                  string firstname,
+                  string middlename,
+                  string lastname,
+                  string nickname,
+                  string title,
+                  string company,
+                  string address)
+        {
+            return (EndLineSymbols(GetFullName(firstname, middlename, lastname))
+                + EndLineSymbols(nickname)
+                + EndLineSymbols(title)
+                + EndLineSymbols(company)
+                + EndLineSymbols(address)).Trim();
+        }
+        // Glue the lines together for telephone list as on the details form
+        public string GetTelephoneList(string home, string mobile, string work, string fax)
+        {
+            string form = "";
+
+            if (home != null && home != "")
+            {
+                form = form + "H: " + EndLineSymbols(HomePhone);
+            }
+            if (mobile != null && mobile != "")
+            {
+                form = form + "M: " + EndLineSymbols(MobilePhone);
+            }
+            if (work != null && work != "")
+            {
+                form = form + "W: " + EndLineSymbols(WorkPhone);
+            }
+            if (fax != null && fax != "")
+            {
+                form = form + "F: " + EndLineSymbols(Fax);
+            }
+            return form.Trim();
+        }
+
+        // Glue the lines together for email list on contact details form
+        public string GetEmailList(string email, string email2, string email3, string homepage)
+        {
+            string form = "";
+
+            if (email != null && email != "")
+            {
+                form = form + EndLineSymbols(email);
+            }
+            if (email2 != null && email2 != "")
+            {
+                form = form + EndLineSymbols(email2);
+            }
+            if (email3 != null && email3 != "")
+            {
+                form = form + EndLineSymbols(email3);
+            }
+            if (homepage != null && homepage != "")
+            {
+                form = form + EndLineSymbols(StringHomePage(homepage));
+            }
+            return form.Trim();
+        }
+
+        //Returns'homepage' as on the contact details form
+        public string StringHomePage(string homepage)
+        {
+            if (homepage == null || homepage == "")
+            {
+                return "";
+            }
+            return "Homepage:" + "\r\n" + homepage;
+        }
+
+        // Retunrs 'SecondHomePhone' as on the contact details form
+        public string StringPhone2(string phone2)
+        {
+            if (phone2 == null || phone2 == "")
+            {
+                return "";
+            }
+            return "P: " + SecondHomePhone;
+        }
+
+        public string CleanUp(string phone)
+         {
+             if (phone == null || phone == "")
+             {
+                 return "";
+             }
+            return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+         }
 
         public int CompareTo(ContactData other)
         {
@@ -156,7 +234,7 @@ namespace WebAdressbookTests
                 return 1;
             }
 
-            int compResuld = this.Lastname.CompareTo(other.Lastname);
+            int compResuld = this.LastName.CompareTo(other.LastName);
 
             if (compResuld!=0)
             {
@@ -164,7 +242,7 @@ namespace WebAdressbookTests
             }
             else
             {
-                return Lastname.CompareTo(other.Lastname);
+                return LastName.CompareTo(other.LastName);
             }
             
         }
@@ -179,16 +257,39 @@ namespace WebAdressbookTests
             {
                 return true;
             }
-            return Firstname.Equals(other.Firstname) && Lastname.Equals(other.Lastname);
+            return FirstName.Equals(other.FirstName) && LastName.Equals(other.LastName);
         }
 
         override public int GetHashCode()
         {
-            return Firstname.GetHashCode() + Lastname.GetHashCode();
+            return FirstName.GetHashCode() + LastName.GetHashCode();
         }
+/*
         public override string ToString()
         {
-            return "First name = " + Firstname + " Last name = " + Lastname;
+            return "First name = " + FirstName + " Last name = " + LastName;
+        }
+*/
+        public override string ToString()
+        {
+            return "firstname = " + FirstName
+                + "\nlastname = " + LastName
+                + "\nmiddlename = " + MiddleName
+                + "\nnickname = " + NickName
+                + "\ntitle = " + Title
+                + "\ncompany = " + Company
+                + "\naddress = " + Address
+                + "\nhomePhone = " + HomePhone
+                + "\nmobilePhone = " + MobilePhone
+                + "\nworkPhone = " + WorkPhone
+                + "\nfax = " + Fax
+                + "\nemail = " + Email1
+                + "\nemail2 = " + Email2
+                + "\nemail3 = " + Email3
+                + "\nhomepage = " + HomePage
+                + "\naddress2 = " + SecondAddress
+                + "\nphone2 = " + SecondHomePhone
+                + "\nnotes = " + Notes;
         }
 
     }

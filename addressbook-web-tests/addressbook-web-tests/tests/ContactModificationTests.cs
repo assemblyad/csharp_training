@@ -18,8 +18,8 @@ namespace WebAdressbookTests
             Assert.AreEqual(oldContacts.Count, app.Contacts.GetContactCount());
             List<ContactData> newContacts = app.Contacts.GetContactList();
 
-            oldContacts[0].Firstname = newData.Firstname;
-            oldContacts[0].Lastname =  newData.Lastname;
+            oldContacts[0].FirstName = newData.FirstName;
+            oldContacts[0].LastName =  newData.LastName;
 
             oldContacts.Sort();
             newContacts.Sort();
@@ -31,8 +31,8 @@ namespace WebAdressbookTests
             {
                 if (contact.ID == oldData.ID)
                 {
-                    Assert.AreNotEqual(oldData.Lastname, contact.Lastname);
-                    Assert.AreNotEqual(oldData.Firstname,contact.Firstname);
+                    Assert.AreNotEqual(oldData.LastName, contact.LastName);
+                    Assert.AreNotEqual(oldData.FirstName,contact.FirstName);
                 }
             }
         }
