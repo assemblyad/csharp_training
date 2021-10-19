@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace addressbook_test_data_generators
 {
@@ -16,7 +18,7 @@ namespace addressbook_test_data_generators
         {
             string dataType = args[0];
             int count = Convert.ToInt32(args[1]);
-            StreamWriter writer = new StreamWriter(args[2]);
+            string filename = args[1];
             string format = args[3];
 
 
@@ -30,18 +32,32 @@ namespace addressbook_test_data_generators
                         Footer = TestBase.GenerateRandomString(6)
                     });
                 }
-                if (format == "csv")
+                if (format == "excel")
                 {
-                    writeGroupsToCsvFile(groups, writer);
-                }
-                else if (format == "xml")
-                {
-                    writeGroupsToXmlFile(groups, writer);
+                    writeGroupsToExcelFile(groups, filename);
                 }
                 else
                 {
-                    System.Console.Out.Write("Unrecognized format " + format);
+                    StreamWriter writer = new StreamWriter(filename);
+                    if (format == "csv")
+                    {
+                        writeGroupsToCsvFile(groups, writer);
+                    }
+                    else if (format == "xml")
+                    {
+                        writeGroupsToXmlFile(groups, writer);
+                    }
+                    else if (format == "json")
+                    {
+                        writeGroupsToJsonFile(groups, writer);
+                    }
+                    else
+                    {
+                        System.Console.Out.Write("Unrecognized format " + format);
+                    }
+                    writer.Close();
                 }
+
             } else if (dataType == "contacts")
             {
                 List<ContactData> contacts = new List<ContactData>();
@@ -52,25 +68,48 @@ namespace addressbook_test_data_generators
                         NickName = TestBase.GenerateRandomString(6)
                     });
                 }
-                if (format == "csv")
+                if (format == "excel")
                 {
-                    writeContactsToCsvFile(contacts, writer);
-                }
-                else if (format == "xml")
-                {
-                    writeContactsToXmlFile(contacts, writer);
-                }
-                {
-                    System.Console.Out.Write("Unrecognized format " + format);
-                }
 
-            }else
+                }else {
+                    StreamWriter writer = new StreamWriter(filename);
+                    if (format == "csv")
+                    {
+                        writeContactsToCsvFile(contacts, writer);
+                    }
+                    else if (format == "xml")
+                    {
+                        writeContactsToXmlFile(contacts, writer);
+                    }
+                    else if (format == "json")
+                    {
+                        writeContactsToJsonFile(contacts, writer);
+                    }
+                    else
+                    {
+                        System.Console.Out.Write("Unrecognized format " + format);
+                    }
+                    writer.Close();
+                }
+            }
+            else
             {
                     System.Console.Out.Write("Unrecognized data type provided " + dataType);
             }
 
-            writer.Close();
+            
         }
+
+        static void writeGroupsToExcelFile(List<GroupData> groups, string filename)
+        {
+            Excel.Application app = new Excel.Application();
+            app.Visible = true;
+            Excel.Workbook wb = app.Workbooks.Add();
+            Excel.Worksheet sheet = wb.ActiveSheet;
+            sheet.Cells[1, 1] = "test";
+            throw new NotImplementedException();
+        }
+
         static void writeGroupsToCsvFile(List<GroupData> groups, StreamWriter writer)
         {
             foreach (GroupData group in groups)
@@ -99,6 +138,17 @@ namespace addressbook_test_data_generators
         static void writeContactsToXmlFile(List<ContactData> contacts, StreamWriter writer)
         {
             new XmlSerializer(typeof(List<ContactData>)).Serialize(writer, contacts);
+        }
+
+        static void writeGroupsToJsonFile(List<GroupData> groups, StreamWriter writer)
+        {
+            //new XmlSerializer(typeof(List<GroupData>)).Serialize(writer, groups);
+            writer.Write(JsonConvert.SerializeObject(groups, Newtonsoft.Json.Formatting.Indented ));
+        }
+        static void writeContactsToJsonFile(List<ContactData> contacts, StreamWriter writer)
+        {
+            //new XmlSerializer(typeof(List<ContactData>)).Serialize(writer, contacts);
+            writer.Write(JsonConvert.SerializeObject(contacts, Newtonsoft.Json.Formatting.Indented));
         }
 
     }

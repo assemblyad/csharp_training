@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace WebAdressbookTests
 {
@@ -39,8 +40,13 @@ namespace WebAdressbookTests
                 new XmlSerializer(typeof(List<ContactData>))
                     .Deserialize(new StreamReader(@"contacts.xml"));
         }
+        public static IEnumerable<ContactData> ContactDataFromJson()
+        {
+            return JsonConvert.DeserializeObject<List<ContactData>>(File.ReadAllText(@"contacts.json"));
+        }
 
-        [Test, TestCaseSource("ContactDataFromXml")]
+
+        [Test, TestCaseSource("ContactDataFromJson")]
         public void ContactCreationTest(ContactData contact)
         {
             List<ContactData> oldContacts = app.Contacts.GetContactList();
