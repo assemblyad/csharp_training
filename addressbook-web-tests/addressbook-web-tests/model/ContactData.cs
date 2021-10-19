@@ -8,6 +8,10 @@ namespace WebAdressbookTests
         private string allEmails;
         private string allContactDetails;
 
+        public ContactData()
+        {
+        }
+
         public ContactData(string firstname, string lastname)
         {
             FirstName = firstname;

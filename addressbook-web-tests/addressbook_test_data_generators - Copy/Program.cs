@@ -14,30 +14,59 @@ namespace addressbook_test_data_generators
     {
         static void Main(string[] args)
         {
-            int count = Convert.ToInt32(args[0]);
-            StreamWriter writer = new StreamWriter(args[1]);
+            string dataType = args[0];
+            int count = Convert.ToInt32(args[1]);
+            StreamWriter writer = new StreamWriter(args[2]);
             string format = args[3];
-            List<GroupData> groups = new List<GroupData>();
 
-            for (int i = 0; i < count; i++)
-            {
-                groups.Add(new GroupData(TestBase.GenerateRandomString(5))
+
+            if (dataType == "group") {
+                List<GroupData> groups = new List<GroupData>();
+                for (int i = 0; i < count; i++)
                 {
-                    Header = TestBase.GenerateRandomString(6),
-                    Footer = TestBase.GenerateRandomString(6)
-                });
-            }
-            if (format == "csv")
+                    groups.Add(new GroupData(TestBase.GenerateRandomString(5))
+                    {
+                        Header = TestBase.GenerateRandomString(6),
+                        Footer = TestBase.GenerateRandomString(6)
+                    });
+                }
+                if (format == "csv")
+                {
+                    writeGroupsToCsvFile(groups, writer);
+                }
+                else if (format == "xml")
+                {
+                    writeGroupsToXmlFile(groups, writer);
+                }
+                else
+                {
+                    System.Console.Out.Write("Unrecognized format " + format);
+                }
+            } else if (dataType == "contacts")
             {
-                writeGroupsToCsvFile(groups, writer);
-            }
-            else if (format == "xml")
+                List<ContactData> contacts = new List<ContactData>();
+                for (int i = 0; i < count; i++)
+                {
+                    contacts.Add(new ContactData(TestBase.GenerateRandomString(5), TestBase.GenerateRandomString(5))
+                    {
+                        NickName = TestBase.GenerateRandomString(6)
+                    });
+                }
+                if (format == "csv")
+                {
+                    writeContactsToCsvFile(contacts, writer);
+                }
+                else if (format == "xml")
+                {
+                    writeContactsToXmlFile(contacts, writer);
+                }
+                {
+                    System.Console.Out.Write("Unrecognized format " + format);
+                }
+
+            }else
             {
-                writeGroupsToXmlFile(groups, writer);
-            }
-            else
-            {
-                System.Console.Out.Write("Unrecognized format " + format);
+                    System.Console.Out.Write("Unrecognized data type provided " + dataType);
             }
 
             writer.Close();
@@ -59,11 +88,17 @@ namespace addressbook_test_data_generators
 
         static void writeContactsToCsvFile(List<ContactData> contacts, StreamWriter writer)
         {
-
+            foreach (ContactData contatcs in contacts)
+            {
+                writer.WriteLine(String.Format("${0},${1},${2}",
+                    contatcs.FirstName,
+                    contatcs.LastName,
+                    contatcs.NickName));
+            }
         }
         static void writeContactsToXmlFile(List<ContactData> contacts, StreamWriter writer)
         {
-
+            new XmlSerializer(typeof(List<ContactData>)).Serialize(writer, contacts);
         }
 
     }

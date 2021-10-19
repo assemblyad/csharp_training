@@ -18,10 +18,10 @@ namespace addressbook_test_data_generators
             int count = Convert.ToInt32(args[1]);
             StreamWriter writer = new StreamWriter(args[2]);
             string format = args[3];
-            if (dataType == "group")
-            {
-                List<GroupData> groups = new List<GroupData>();
 
+
+            if (dataType == "group") {
+                List<GroupData> groups = new List<GroupData>();
                 for (int i = 0; i < count; i++)
                 {
                     groups.Add(new GroupData(TestBase.GenerateRandomString(5))
@@ -42,13 +42,12 @@ namespace addressbook_test_data_generators
                 {
                     System.Console.Out.Write("Unrecognized format " + format);
                 }
-            }else if (dataType == "contact")
+            } else if (dataType == "contacts")
             {
                 List<ContactData> contacts = new List<ContactData>();
-
                 for (int i = 0; i < count; i++)
                 {
-                    contacts.Add(new ContactData(TestBase.GenerateRandomString(5), TestBase.GenerateRandomString(6))
+                    contacts.Add(new ContactData(TestBase.GenerateRandomString(5), TestBase.GenerateRandomString(5))
                     {
                         NickName = TestBase.GenerateRandomString(6)
                     });
@@ -61,16 +60,14 @@ namespace addressbook_test_data_generators
                 {
                     writeContactsToXmlFile(contacts, writer);
                 }
-                else
                 {
                     System.Console.Out.Write("Unrecognized format " + format);
                 }
-            }
-            else
+
+            }else
             {
-                System.Console.Out.Write("Unrecognized data type provided " + dataType);
+                    System.Console.Out.Write("Unrecognized data type provided " + dataType);
             }
-            
 
             writer.Close();
         }
@@ -91,14 +88,13 @@ namespace addressbook_test_data_generators
 
         static void writeContactsToCsvFile(List<ContactData> contacts, StreamWriter writer)
         {
-            foreach (ContactData contact in contacts)
+            foreach (ContactData contatcs in contacts)
             {
                 writer.WriteLine(String.Format("${0},${1},${2}",
-                    contact.FirstName,
-                    contact.LastName,
-                    contact.NickName));
+                    contatcs.FirstName,
+                    contatcs.LastName,
+                    contatcs.NickName));
             }
-
         }
         static void writeContactsToXmlFile(List<ContactData> contacts, StreamWriter writer)
         {
