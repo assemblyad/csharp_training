@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace WebAdressbookTests
 {
     
-    public class GroupExistenceValidationBaseTest: AuthTestBase
+    public class GroupExistenceValidationBaseTest: GroupTestBase
     {
         [SetUp]
         public void SetUpGroupCreation()

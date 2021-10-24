@@ -1,7 +1,11 @@
-﻿using System;
+﻿using LinqToDB.Mapping;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace WebAdressbookTests
 {
+    [Table(Name = "group_list")]
     public class GroupData: IEquatable<GroupData> , IComparable<GroupData>
     {
         public GroupData()
@@ -12,13 +16,22 @@ namespace WebAdressbookTests
         {
             Name = name;
         }
+        [Column(Name = "group_name")]
         public string Name { get; set; }
-
+        [Column(Name = "group_header")]
         public string Header { get; set; }
-        
+        [Column(Name = "group_footer")]
         public string Footer { get; set; }
-
+        [Column(Name = "group_id"),PrimaryKey, Identity]
         public string ID { get; set; } 
+
+        public static List<GroupData> GetAll()
+        {
+            using (AddressbookDB db = new AddressbookDB())
+            {
+                return (from g in db.Groups select g).ToList();
+            }
+        }
 
         public int CompareTo(GroupData other)
         {
