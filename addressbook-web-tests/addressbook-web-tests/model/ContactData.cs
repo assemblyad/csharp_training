@@ -1,7 +1,11 @@
-﻿using System;
+﻿using LinqToDB.Mapping;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace WebAdressbookTests
 {
+    [Table(Name = "addressbook")]
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
         private string allPhones;
@@ -17,9 +21,11 @@ namespace WebAdressbookTests
             FirstName = firstname;
             LastName = lastname;
         }
-
+        [Column(Name = "id"),PrimaryKey,Identity]
         public string ID { get; set; }
+        [Column(Name = "firstname")] 
         public string FirstName { get; set; }
+        [Column(Name = "lastname")]
         public string LastName { get; set;}
         public string MiddleName { get; set; }
         public string NickName { get; set; }
@@ -45,6 +51,14 @@ namespace WebAdressbookTests
         public string AYear { get; set; }
         public string BAge { get; set; }
         public string AAge { get; set; }
+
+        public static List<ContactData> GetAll()
+        {
+            using (AddressbookDB db = new AddressbookDB())
+            {
+                return (from c in db.Contacts select c).ToList();
+            }
+        }
 
         public string AllContactDetails
         {

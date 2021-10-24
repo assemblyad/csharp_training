@@ -207,6 +207,17 @@ namespace WebAdressbookTests
             return this;
         }
 
+        public ContactHelper Modify(ContactData contactToBeModified)
+        {
+            manager.Navigator.GoToHomePage();
+            ContactSelection(contactToBeModified.ID);
+            InitContactModification(contactToBeModified.ID);
+            FillContactForm(new ContactData("BB", "CC"));
+            driver.FindElement(By.XPath("//div[@id='content']/form/input[22]")).Click();
+            manager.Navigator.GoToContactHomePage();
+            return this;
+        }
+
         public ContactHelper Removal(int index)
         {
             manager.Navigator.GoToHomePage();
@@ -221,6 +232,13 @@ namespace WebAdressbookTests
         {
             //driver.FindElement(By.XPath("//tbody/tr[2]/td[1]")).Click();
             driver.FindElement(By.XPath("//input[@name='selected[]'][" + (index + 1) + "]")).Click();
+            return this;
+        }
+
+        public ContactHelper ContactSelection(String id)
+        {
+            //driver.FindElement(By.XPath("//tbody/tr[2]/td[1]")).Click();
+            driver.FindElement(By.XPath("//input[@name='selected[]' and @value='"+ id + "']")).Click();
             return this;
         }
 
@@ -242,6 +260,21 @@ namespace WebAdressbookTests
             contactCache = null;
             return this;
         }
+
+        public ContactHelper InitContactModification(String id)
+        {
+            driver.FindElement(By.XPath(String.Format("//a[@href='edit.php?id={0}']", id))).Click();
+            contactCache = null;
+            /*
+            driver.FindElements(By.Name("entry"))[index]
+                  .FindElements(By.TagName("td"))[7]
+                  .FindElement(By.TagName("a")).Click();
+            contactCache = null;
+            */
+            return this;
+        }
+
+
         public ContactHelper DeteteButton()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();

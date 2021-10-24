@@ -49,12 +49,14 @@ namespace WebAdressbookTests
         [Test, TestCaseSource("ContactDataFromJson")]
         public void ContactCreationTest(ContactData contact)
         {
-            List<ContactData> oldContacts = app.Contacts.GetContactList();
+            //List<ContactData> oldContacts = app.Contacts.GetContactList();
+            List<ContactData> oldContacts = ContactData.GetAll();
 
             app.Contacts.Creation(contact);
-            Assert.AreEqual(oldContacts.Count + 1, app.Contacts.GetContactCount());
-            List<ContactData> newContacts = app.Contacts.GetContactList();
 
+            Assert.AreEqual(oldContacts.Count + 1, app.Contacts.GetContactCount());
+            //List<ContactData> newContacts = app.Contacts.GetContactList();
+            List<ContactData> newContacts = ContactData.GetAll();
             //oldContacts.Add(new ContactData("TT", "MM"));
             oldContacts.Add(contact);
             oldContacts.Sort();
