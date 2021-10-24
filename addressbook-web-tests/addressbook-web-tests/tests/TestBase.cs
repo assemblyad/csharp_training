@@ -6,7 +6,8 @@ namespace WebAdressbookTests
 {
     public class TestBase
     {
-        public static bool PERFORM_LONG_UI_CHECKS = false;
+        public static bool PERFORM_LONG_UI_GROUPS_CHECKS = true;
+        public static bool PERFORM_LONG_UI_CONTACTS_CHECKS = true;
         protected ApplicationManager app;
         public static Random rnd = new Random();
         [SetUp]

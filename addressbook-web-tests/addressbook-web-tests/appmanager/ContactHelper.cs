@@ -212,7 +212,7 @@ namespace WebAdressbookTests
             manager.Navigator.GoToHomePage();
             ContactSelection(contactToBeModified.ID);
             InitContactModification(contactToBeModified.ID);
-            FillContactForm(new ContactData("BB", "CC"));
+            FillContactForm(new ContactData("AA", "BB"));
             driver.FindElement(By.XPath("//div[@id='content']/form/input[22]")).Click();
             manager.Navigator.GoToContactHomePage();
             return this;
@@ -222,6 +222,16 @@ namespace WebAdressbookTests
         {
             manager.Navigator.GoToHomePage();
             ContactSelection(index);
+            DeteteButton();
+            ClosePopUpwindow();
+            manager.Navigator.GoToHomePage();
+            return this;
+        }
+
+        public ContactHelper Removal(ContactData contactToBeRemoved)
+        {
+            manager.Navigator.GoToHomePage();
+            ContactSelection(contactToBeRemoved.ID);
             DeteteButton();
             ClosePopUpwindow();
             manager.Navigator.GoToHomePage();

@@ -7,14 +7,15 @@ using NUnit.Framework;
 
 namespace WebAdressbookTests
 {
-    public class GroupTestBase: AuthTestBase
+    public class ContactTestBase : AuthTestBase
     {
         [TearDown]
-        public void CompareGroupsUI_DB() {
-            if (PERFORM_LONG_UI_GROUPS_CHECKS)
+        public void CompareContactsUI_DB()
+        {
+            if (PERFORM_LONG_UI_CONTACTS_CHECKS)
             {
-                List<GroupData> fromUI = app.Groups.GetGroupList();
-                List<GroupData> fromDB = GroupData.GetAll();
+                List<ContactData> fromUI = app.Contacts.GetContactList();
+                List<ContactData> fromDB = ContactData.GetAll();
                 fromUI.Sort();
                 fromDB.Sort();
 
