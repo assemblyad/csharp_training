@@ -52,11 +52,14 @@ namespace WebAdressbookTests
         public string BAge { get; set; }
         public string AAge { get; set; }
 
+        [Column(Name = "deprecated")]
+        public string Depricated { get; set; }
+
         public static List<ContactData> GetAll()
         {
             using (AddressbookDB db = new AddressbookDB())
             {
-                return (from c in db.Contacts select c).ToList();
+                return (from c in db.Contacts.Where(x => x.Depricated == "0000-00-00 00:00:00") select c).ToList();
             }
         }
 

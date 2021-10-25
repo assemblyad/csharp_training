@@ -25,14 +25,6 @@ namespace WebAdressbookTests
         [Column(Name = "group_id"),PrimaryKey, Identity]
         public string ID { get; set; } 
 
-        public static List<GroupData> GetAll()
-        {
-            using (AddressbookDB db = new AddressbookDB())
-            {
-                return (from g in db.Groups select g).ToList();
-            }
-        }
-
         public int CompareTo(GroupData other)
         {
             if(Object.ReferenceEquals(other, null))
@@ -65,5 +57,23 @@ namespace WebAdressbookTests
         {
             return "name=" + Name + "\nheader = " + Header+ "\nfooter = "+Footer;
         }
+        public static List<GroupData> GetAll()
+        {
+            using (AddressbookDB db = new AddressbookDB())
+            {
+                return (from g in db.Groups select g).ToList();
+            }
+        }
+
+        public List<ContactData> GetContacts()
+        {
+            using (AddressbookDB db = new AddressbookDB())
+            {
+                return (from c in db.Contacts 
+                            from gcr in db.GCR.Where(p => p.GroupId == this.ID && p.ContactId== c.ID && c.Depricated == "0000-00-00 00:00:00") select c).Distinct().ToList();
+            }
+
+        }
+
     }
 }
