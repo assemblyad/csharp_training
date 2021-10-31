@@ -10,21 +10,58 @@ namespace WebAdressbookTests
     class DeletingContactFromGroupsTest : AuthTestBase
     {
         [Test]
-        public void TestDeletingContactToGroup()
+        public void TestDeletingContactFromGroup()
         {
+            
             GroupData group = GroupData.GetAll()[0];
-            List<ContactData> oldList = group.GetContacts();
-            ContactData contact = oldList.First();
+
+            List<ContactData> allContacts = ContactData.GetAll();
+            ContactData contact = allContacts[0];
+
+            if (group == null)
+            {
+                group = new GroupData("name");
+                group.Header = "header";
+                group.Footer = "footer";
+                app.Groups.Create(group);
+                group = GroupData.GetAll()[0];
+            }
+
+            if (contact == null)
+            {
+                app.Contacts.Creation(new ContactData("FF", "LL"));
+                allContacts = ContactData.GetAll();
+                contact = allContacts[0];
+            }
+
+            List<GroupData> allGroups = GroupData.GetAll();
+
+            for (int i= 0; i < allGroups.Count; i++)
+            {
+                //finding first not empty group
+                if (allGroups[i].GetContacts().Count()>0)
+                {
+                    group = allGroups[i];
+                    allContacts = group.GetContacts();
+                    contact = allContacts[0];
+                    break;
+                }
+                else if (allGroups.Count==(i+1))
+                {
+                    group = allGroups[i];
+                    app.Contacts.AddContactToGroup(contact, group);
+                }
+            }
 
             //actions 
             app.Contacts.RemoveContactFromGroup(contact, group);
             List<ContactData> newList = group.GetContacts();
             //oldList.Add(contact);
-            oldList.Remove(contact);
+            allContacts.Remove(contact);
             newList.Sort();
-            oldList.Sort();
+            allContacts.Sort();
 
-            Assert.AreEqual(oldList, newList);
+            Assert.AreEqual(allContacts, newList);
         }
     }
 }
