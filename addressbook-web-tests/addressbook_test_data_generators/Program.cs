@@ -26,10 +26,10 @@ namespace addressbook_test_data_generators
                 List<GroupData> groups = new List<GroupData>();
                 for (int i = 0; i < count; i++)
                 {
-                    groups.Add(new GroupData(TestBase.GenerateRandomString(5))
+                    groups.Add(new GroupData(TestParameterBase.GenerateRandomString(5))
                     {
-                        Header = TestBase.GenerateRandomString(6),
-                        Footer = TestBase.GenerateRandomString(6)
+                        Header = TestParameterBase.GenerateRandomString(6),
+                        Footer = TestParameterBase.GenerateRandomString(6)
                     });
                 }
                 if (format == "excel")
@@ -63,9 +63,9 @@ namespace addressbook_test_data_generators
                 List<ContactData> contacts = new List<ContactData>();
                 for (int i = 0; i < count; i++)
                 {
-                    contacts.Add(new ContactData(TestBase.GenerateRandomString(5), TestBase.GenerateRandomString(5))
+                    contacts.Add(new ContactData(TestParameterBase.GenerateRandomString(5), TestParameterBase.GenerateRandomString(5))
                     {
-                        NickName = TestBase.GenerateRandomString(6)
+                        NickName = TestParameterBase.GenerateRandomString(6)
                     });
                 }
                 if (format == "excel")

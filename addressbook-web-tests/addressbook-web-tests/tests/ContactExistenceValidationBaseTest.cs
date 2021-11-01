@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WebAdressbookTests
 {
-    public class ContactExistenceValidationBaseTest: ContactTestBase
+    public class ContactExistenceValidationBaseTest: GroupExistenceValidationBaseTest
     {
         [SetUp]
         public void SetUpContactCreation()

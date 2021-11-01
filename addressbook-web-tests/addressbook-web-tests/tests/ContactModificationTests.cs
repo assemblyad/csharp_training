@@ -33,8 +33,8 @@ namespace WebAdressbookTests
             {
                 if (contact.ID == oldData.ID)
                 {
-                    Assert.AreNotEqual(oldData.LastName, contact.LastName);
-                    Assert.AreNotEqual(oldData.FirstName,contact.FirstName);
+                    Assert.AreEqual(oldData.LastName, contact.LastName);
+                    Assert.AreEqual(oldData.FirstName,contact.FirstName);
                 }
             }
         }

@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 namespace WebAdressbookTests
 {
-    public class GroupTestBase: AuthTestBase
+    public class GroupTestBase: GroupExistenceValidationBaseTest
     {
         [TearDown]
         public void CompareGroupsUI_DB() {

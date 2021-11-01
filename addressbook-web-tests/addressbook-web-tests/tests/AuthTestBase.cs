@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WebAdressbookTests
 {
-    public class AuthTestBase: TestBase
+    public class AuthTestBase: TestParameterBase
     {
 
         [SetUp]

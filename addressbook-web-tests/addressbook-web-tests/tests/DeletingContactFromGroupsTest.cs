@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 namespace WebAdressbookTests
 {
-    class DeletingContactFromGroupsTest : AuthTestBase
+    class DeletingContactFromGroupsTest : ContactExistenceValidationBaseTest
     {
         [Test]
         public void TestDeletingContactFromGroup()
@@ -17,23 +17,6 @@ namespace WebAdressbookTests
 
             List<ContactData> allContacts = ContactData.GetAll();
             ContactData contact = allContacts[0];
-
-            if (group == null)
-            {
-                group = new GroupData("name");
-                group.Header = "header";
-                group.Footer = "footer";
-                app.Groups.Create(group);
-                group = GroupData.GetAll()[0];
-            }
-
-            if (contact == null)
-            {
-                app.Contacts.Creation(new ContactData("FF", "LL"));
-                allContacts = ContactData.GetAll();
-                contact = allContacts[0];
-            }
-
             List<GroupData> allGroups = GroupData.GetAll();
 
             for (int i= 0; i < allGroups.Count; i++)

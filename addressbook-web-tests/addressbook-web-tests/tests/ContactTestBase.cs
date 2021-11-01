@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 namespace WebAdressbookTests
 {
-    public class ContactTestBase : AuthTestBase
+    public class ContactTestBase : ContactExistenceValidationBaseTest
     {
         [TearDown]
         public void CompareContactsUI_DB()

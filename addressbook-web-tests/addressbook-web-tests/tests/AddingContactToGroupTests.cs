@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 namespace WebAdressbookTests
 {
-    class AddingContactToGroupTests:AuthTestBase
+    class AddingContactToGroupTests: ContactExistenceValidationBaseTest
     {
         [Test]
         public void TestAddingContactToGroup()
@@ -17,25 +17,7 @@ namespace WebAdressbookTests
 
             List<ContactData> oldList = ContactData.GetAll();
             ContactData contact = oldList[0];
-
-            if(contact == null)
-            {
-                app.Contacts.Creation(new ContactData("FF", "LL"));
-                oldList = ContactData.GetAll();
-                contact = oldList[0];
-            }
-
-            if (group == null)
-            {
-                group = new GroupData("name");
-                group.Header = "header";
-                group.Footer = "footer";
-                app.Groups.Create(group);
-                group = GroupData.GetAll()[0];
-            }
-            else
-            {
-                int numberOfGroups = groups.Count();
+            int numberOfGroups = groups.Count();
                 for (int i= 0; i< numberOfGroups; i++)
                 {
                     group = groups[i];
@@ -54,8 +36,7 @@ namespace WebAdressbookTests
                         }
                     }
                 }
-            }
-
+ 
             //group = GroupData.GetAll()[0];
             //List<ContactData> oldList = group.GetContacts();
             //ContactData contact = ContactData.GetAll().Except(oldList).First();
