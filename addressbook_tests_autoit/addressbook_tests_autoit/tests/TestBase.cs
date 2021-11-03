@@ -10,17 +10,17 @@ namespace addressbook_tests_autoit
 
     public class TestBase
     {
-        //ApplicationManager app;
-        [SetUpFixture]
+        public ApplicationManager app;
+        [TestFixtureSetUp]
         public void initApplication()
         {
-            //app = new ApplicationManager();
+            app = new ApplicationManager();
         }
 
         [TestFixtureTearDown]
-        public void stopapplication()
+        public void stopApplication()
         {
-            app.stop();
+            app.Stop();
         }
 
     }
