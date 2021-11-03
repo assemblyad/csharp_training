@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="WebAdressbookTests.TestBase">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAACAAAAAAAAA=</HashCode>
       <FileName>tests\TestBase.cs</FileName>
@@ -11,48 +11,48 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="WebAdressbookTests.GroupModificationTests">
-    <Position X="0.5" Y="5.25" Width="1.5" />
+    <Position X="0.5" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>tests\GroupModificationTests.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebAdressbookTests.GroupRemovalTests">
-    <Position X="2.5" Y="5.25" Width="1.5" />
+    <Position X="2.75" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>tests\GroupRemovalTest.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WebAdressbookTests.ContactCreation">
-    <Position X="4.75" Y="5.25" Width="1.5" />
+  <Class Name="WebAdressbookTests.ContactCreation" Collapsed="true">
+    <Position X="5.25" Y="7" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <HashCode>EAAAAAAAAAAECAAAAAAAAAAAEAAAAAAAAAAAAgAAAAA=</HashCode>
       <FileName>tests\ContactCreationTests.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebAdressbookTests.ContactHelper" Collapsed="true">
     <Position X="5.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AABAIAACAAAEAABAAAAAAAAAAAEAAAQCAAAAAAAAAAI=</HashCode>
+      <HashCode>QABQIAACCANEAARAAQAAgAAAAEGAQAABIABIAABAACI=</HashCode>
       <FileName>appmanager\ContactHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebAdressbookTests.GroupHelper" Collapsed="true">
-    <Position X="5.75" Y="3.75" Width="1.5" />
+    <Position X="5.75" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAQCIAAAAABAAAAAAAAABAAAAAABMEACAAAAAAAAQAA=</HashCode>
+      <HashCode>BAACIAAAAABEAAAAAAAABEAAQAABMEACAAAAAIBAAAA=</HashCode>
       <FileName>appmanager\GroupHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebAdressbookTests.LoginHelper" Collapsed="true">
     <Position X="5.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAQAASAAAAAAA=</HashCode>
       <FileName>appmanager\LoginHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WebAdressbookTests.NavigationHelper">
+  <Class Name="WebAdressbookTests.NavigationHelper" Collapsed="true">
     <Position X="5.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACKA=</HashCode>
@@ -60,9 +60,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="WebAdressbookTests.HelperBase">
-    <Position X="9" Y="1.75" Width="1.5" />
+    <Position X="11" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAABAAAAAABCEAAAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>appmanager\HelperBase.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -72,7 +72,7 @@
   <Class Name="WebAdressbookTests.ApplicationManager">
     <Position X="2.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAAEAEAABAAAAAAAAgAAAASABAAAgAAAADCAABAAACA=</HashCode>
+      <HashCode>BAAEAEAABAAAAAAAAAAAAASABAAAgAAAADCAABAAACA=</HashCode>
       <FileName>appmanager\ApplicationManager.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -81,6 +81,55 @@
       <Field Name="groupHelper" />
       <Field Name="contactHelper" />
     </ShowAsAssociation>
+  </Class>
+  <Class Name="WebAdressbookTests.ContactTestBase" Collapsed="true">
+    <Position X="7.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>tests\ContactTestBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebAdressbookTests.ContactExistenceValidationBaseTest" Collapsed="true">
+    <Position X="5.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>tests\ContactExistenceValidationBaseTest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebAdressbookTests.GroupExistenceValidationBaseTest" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>tests\GroupExistenceValidationBaseTest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebAdressbookTests.AuthTestBase" Collapsed="true">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>tests\AuthTestBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebAdressbookTests.TestParameterBase" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEQAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAIAAAAAA=</HashCode>
+      <FileName>tests\TestParameterBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebAdressbookTests.AddingContactToGroupTests" Collapsed="true">
+    <Position X="9.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>tests\AddingContactToGroupTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebAdressbookTests.DeletingContactFromGroupsTest" Collapsed="true">
+    <Position X="9.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>tests\DeletingContactFromGroupsTest.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Interface Name="OpenQA.Selenium.IWebDriver" Collapsed="true">
     <Position X="12.5" Y="0.5" Width="1.5" />
