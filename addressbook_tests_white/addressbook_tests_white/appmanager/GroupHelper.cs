@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using TestStack.White;
 using TestStack.White.UIItems;
+using TestStack.White.UIItems.Finders;
 using TestStack.White.UIItems.TreeItems;
 using TestStack.White.UIItems.WindowItems;
+using System.Windows.Automation;
+using TestStack.White.InputDevices;
+using TestStack.White.WindowsAPI;
 
 namespace addressbook_tests_white
 {
@@ -16,7 +20,7 @@ namespace addressbook_tests_white
         {
             List<GroupData> list = new List<GroupData>();
             Window dialogue = OpenGroupsDialogue();
-            Tree tree = dialogue.Get<Tree>("");
+            Tree tree = dialogue.Get<Tree>("uxAddressTreeView");
 
             TreeNode root = tree.Nodes[0];
 
@@ -29,15 +33,18 @@ namespace addressbook_tests_white
                 });
             }
             CloseGroupsDialogue(dialogue);
-            return new List<GroupData>();
+            return list;
         }
 
         public void Add(GroupData newGroup)
         {
             Window dialogue  = OpenGroupsDialogue();
-            dialogue.Get<Button>("").Click();
+            dialogue.Get<Button>("uxNewAddressButton").Click();
+            TextBox textBox = (TextBox)dialogue.Get(SearchCriteria.ByControlType(ControlType.Edit));
+            textBox.Enter(newGroup.Name);
+            Keyboard.Instance.PressSpecialKey(KeyboardInput.SpecialKeys.RETURN);
 
-            
+
             //aux.Send(newGroup.Name);
             //aux.Send("{ENTER}");
             CloseGroupsDialogue(dialogue);    
@@ -45,13 +52,13 @@ namespace addressbook_tests_white
 
         private void CloseGroupsDialogue(Window dialogue)
         {
-            dialogue.Get<Button>("").Click();
+            dialogue.Get<Button>("uxCloseAddressButton").Click();
             
         }
 
         private Window OpenGroupsDialogue()
         {
-            manager.MainWindow.Get<Button>("").Click();
+            manager.MainWindow.Get<Button>("groupButton").Click();
             return manager.MainWindow.ModalWindow(GROUPWINTITLE);
         }
     }
