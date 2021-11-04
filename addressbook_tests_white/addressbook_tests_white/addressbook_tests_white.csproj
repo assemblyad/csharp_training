@@ -68,6 +68,8 @@
     <Compile Include="tests\GroupCreationTests.cs" />
     <Compile Include="tests\TestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tests\GroupDeletionTests.cs" />
+    <Compile Include="tests\GroupExistenceValidationBaseTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
