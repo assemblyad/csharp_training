@@ -22,7 +22,7 @@ namespace addressbook_tests_autoit
                 });
             }
             CloseGroupsDialogue();
-            return new List<GroupData>();
+            return list;
         }
 
         public void Add(GroupData newGroup)

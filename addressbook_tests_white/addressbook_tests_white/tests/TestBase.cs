@@ -7,17 +7,17 @@ using NUnit.Framework;
 
 namespace addressbook_tests_white
 {
-
+    [SetUpFixture]
     public class TestBase
     {
         public ApplicationManager app;
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void initApplication()
         {
             app = new ApplicationManager();
         }
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         public void stopApplication()
         {
             app.Stop();
