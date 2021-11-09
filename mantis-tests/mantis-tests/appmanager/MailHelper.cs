@@ -12,7 +12,7 @@ namespace mantis_tests
         public MailHelper(ApplicationManager manager) : base(manager){}
         public String GetLastMail(AccountData account)
         {
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 20; i++)
             {
                 Pop3Client pop3 = new Pop3Client("localhost", 110, account.Name, account.Password, false);
                 pop3.Connect();
@@ -26,7 +26,7 @@ namespace mantis_tests
                 }
                 else
                 {
-                    System.Threading.Thread.Sleep(1000);
+                    System.Threading.Thread.Sleep(3000);
                 }
             }
             return null;
