@@ -7,7 +7,7 @@ namespace mantis_tests
     public class TestBase
     {
         protected ApplicationManager app;
-        [SetUp]
+        [TestFixtureSetUp]
         public void SetUpApplicationManager()
         {
             app = ApplicationManager.GetInstance();
