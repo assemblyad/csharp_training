@@ -11,11 +11,15 @@ namespace mantis_tests
     {
         private IWebDriver driver;
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
-
+        private string baseURL = "http://localhost/mantisbt-2.24.2";
         public RegistrationHelper Registration { get; set; }
         public FtpHelper Ftp { get; set; }
         public JamesHelper James { get; set; }
         public MailHelper Mail { get; set; }
+
+        private LoginHelper loginHelper;
+        private LeftManagementMenuHelper navigator;
+        //private ProjectHelper projectHelper;
 
         private ApplicationManager()
         {
@@ -25,7 +29,19 @@ namespace mantis_tests
             Ftp = new FtpHelper(this);
             James = new JamesHelper(this);
             Mail = new MailHelper(this);
-
+            loginHelper = new LoginHelper(this);
+            navigator = new LeftManagementMenuHelper(this, baseURL);
+        }
+        ~ApplicationManager()
+        {
+            try
+            {
+                driver.Quit();
+            }
+            catch (Exception)
+            {
+                // Ignore errors if unable to close the browser
+            }
         }
 
         public static ApplicationManager GetInstance()
@@ -40,19 +56,16 @@ namespace mantis_tests
             return app.Value;
         }
         
-        ~ApplicationManager()
-        {
-            try
-            {
-                driver.Quit();
-            }
-            catch (Exception)
-            {
-                // Ignore errors if unable to close the browser
-            }
-        }
         
         public IWebDriver Driver { get { return driver; } }
 
+        public LoginHelper Auth
+        {
+            get { return loginHelper; }
+        }
+        public LeftManagementMenuHelper LeftMenu
+        {
+            get { return navigator; }
+        }
     }
 }
