@@ -23,6 +23,7 @@ namespace mantis_tests
                 {
                     //MailMessage messag = pop3.GetMessages(1);
                     MailMessage message = pop3.GetMessage(1);
+                    pop3.LogOut();
                     return message.Body;
                 }
                 else

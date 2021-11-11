@@ -19,6 +19,9 @@ namespace mantis_tests
 
         private LoginHelper loginHelper;
         private LeftManagementMenuHelper navigator;
+
+        public AdminHelper Admin { get; set; }
+
         //private ProjectHelper projectHelper;
 
         private ApplicationManager()
@@ -31,6 +34,7 @@ namespace mantis_tests
             Mail = new MailHelper(this);
             loginHelper = new LoginHelper(this);
             navigator = new LeftManagementMenuHelper(this, baseURL);
+            Admin = new AdminHelper(this, baseURL);
         }
         ~ApplicationManager()
         {
@@ -50,7 +54,7 @@ namespace mantis_tests
             {
                 ApplicationManager newInstance = new ApplicationManager();
                 //newInstance.Navigator.GoToHomePage();
-                newInstance.driver.Url = "http://localhost/mantisbt-2.24.2/login_page.php";
+                newInstance.driver.Url = newInstance.baseURL + "/login_page.php";
                 app.Value = newInstance;
             }
             return app.Value;
