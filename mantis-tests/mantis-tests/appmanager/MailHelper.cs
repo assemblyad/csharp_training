@@ -21,8 +21,9 @@ namespace mantis_tests
 
                 if (pop3.GetMessageCount() > 0)
                 {
-                    List<MailMessage> message = pop3.GetMessages();
-                    return message[1].Body;
+                    //MailMessage messag = pop3.GetMessages(1);
+                    MailMessage message = pop3.GetMessage(1);
+                    return message.Body;
                 }
                 else
                 {

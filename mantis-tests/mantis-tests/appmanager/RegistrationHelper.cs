@@ -22,19 +22,22 @@ namespace mantis_tests
             FillRegistrationForm(account);
             SubmitRegistration();
             String url = GetConfirmationUrl(account);
-            FillPasswordForm(url);
+            FillPasswordForm(url, account);
             SubmitPasswordForm();
 
         }
 
         public void SubmitPasswordForm()
         {
-            throw new NotImplementedException();
+            driver.FindElement(By.XPath("//*[@type='submit']")).Click();
         }
 
-        public void FillPasswordForm(string url)
+        public void FillPasswordForm(string url, AccountData account)
         {
-            throw new NotImplementedException();
+            driver.Url = url;
+            driver.FindElement(By.Id("realname")).SendKeys(account.Name);
+            driver.FindElement(By.Id("password")).SendKeys(account.Password);
+            driver.FindElement(By.Id("password-confirm")).SendKeys(account.Password); 
         }
 
         public string GetConfirmationUrl(AccountData account)
