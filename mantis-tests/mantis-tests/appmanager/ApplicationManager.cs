@@ -21,6 +21,7 @@ namespace mantis_tests
         private LeftManagementMenuHelper navigator;
 
         public AdminHelper Admin { get; set; }
+        public APIHelper API { get; set; }
 
         //private ProjectHelper projectHelper;
 
@@ -35,6 +36,7 @@ namespace mantis_tests
             loginHelper = new LoginHelper(this);
             navigator = new LeftManagementMenuHelper(this, baseURL);
             Admin = new AdminHelper(this, baseURL);
+            API = new APIHelper(this);
         }
         ~ApplicationManager()
         {

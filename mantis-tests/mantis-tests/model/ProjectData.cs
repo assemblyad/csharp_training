@@ -17,6 +17,7 @@ namespace mantis_tests
         public string Name { get; set; }
         public string Description { get; set; }
         public string Status { get; set; }
+        public string Id { get; set; }
 
         public int CompareTo(ProjectData other)
         {
