@@ -63,7 +63,6 @@ namespace mantis_tests
 
         public void VerifySameProjectPresence(ProjectData project)
         {
-            //manager.Navigator.GoToManageProjPage();
             ICollection<IWebElement> allCurrentOpenedProjects = driver.FindElements(By.XPath("//table"))[0].FindElements(By.XPath(".//tbody//tr/td[1]"));
             foreach (IWebElement projectElement in allCurrentOpenedProjects)
             {

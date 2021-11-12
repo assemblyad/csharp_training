@@ -7,6 +7,7 @@ namespace mantis_tests
         //protected IWebDriver driver;
         protected ApplicationManager manager;
         protected LeftManagementMenuHelper LeftManagementMenuHelper;
+        protected AccountData adminLogin = new AccountData("administrator", "root");
 
         public HelperBase(ApplicationManager  manager): base(manager.Driver)
         {

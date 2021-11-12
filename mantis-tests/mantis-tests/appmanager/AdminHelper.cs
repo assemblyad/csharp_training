@@ -49,9 +49,9 @@ namespace mantis_tests
         {
             IWebDriver driver = new SimpleBrowserDriver();
             driver.Url = baseUrl + "/login_page.php";
-            driver.FindElement(By.Id("username")).SendKeys("administrator");
+            driver.FindElement(By.Id("username")).SendKeys(adminLogin.Name);
             driver.FindElement(By.XPath("//input[@value='Login']")).Click(); //administrator root
-            driver.FindElement(By.Id("password")).SendKeys("root");
+            driver.FindElement(By.Id("password")).SendKeys(adminLogin.Password);
             driver.FindElement(By.XPath("//input[@value='Login']")).Click(); //administrator root
             return driver;
         }
